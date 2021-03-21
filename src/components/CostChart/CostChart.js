@@ -51,11 +51,9 @@ const CostChart = () => {
 	const getY = (x) => parseInt(A + B * x);
 
 	useEffect(() => {
-		console.log('useEffect called');
 		const xBreakEven = getX(WITHDRAWAL_FEE);
 		const xLimit = xBreakEven * EXTENSION_FACTOR;
 
-		console.log('xLimit: ', xLimit);
 		const data = [];
 		for (let i = 0; i < xLimit; i = i + CHART_DATA_STEP) {
 			data.push({ x: i, y: getY(i)});
@@ -75,12 +73,7 @@ const CostChart = () => {
 	}, [unit]);
 
 	const tickFormat = (value, index, scale, tickTotal) => {
-		if (value < 1e3)
-			return `${value}`;
-		if (value < 1000e3)
-			return `${value / 1e3}K`;
-		else
-			return `${value / 1e6}M`;
+		return formatInt(value);
 	};
 
 	const handleUnitToggle = () => {
@@ -119,11 +112,22 @@ const CostChart = () => {
 		});
 	}
 
-	const crossHairStyle = {
-		title: {
-			display: 'none'
+	const formatInt = value => {
+	if (value < 1e3)
+		return `${value}`;
+	if (value < 1000e3)
+		return `${value / 1e3}K`;
+	else
+		return `${value / 1e6}M`;
+	}
+
+	const formatValue = value => {
+		if (unit === Units.SATS) {
+			return formatInt(value);
+		} else {
+			return new Intl.NumberFormat('en', {maximumFractionDigits: 2}).format(value);
 		}
-	};
+	}
 
 	return (
 		<div className='CostChartRoot'>
@@ -131,13 +135,19 @@ const CostChart = () => {
 				<label>Unit</label>
 				<button onClick={handleUnitToggle}>{unit.toUpperCase()}</button>
 			</div>
-			<XYPlot height={300} width={700} onMouseLeave={onMouseLeave}>
+			<XYPlot height={300} width={700}>
 				<LineSeries data={unit === Units.SATS ? chartData : fiatChartData} onNearestX={onNearestX}/>
 				<XAxis title={xAxisTitle()} tickFormat={tickFormat}/>
 				<YAxis title={yAxisTitle()} tickFormat={tickFormat}/>
 				<HorizontalGridLines tickValues={[getWithdrawalCost()]}/>
 				<VerticalGridLines tickValues={[getEquivalencePoint()]} style={verticalStyle}/>
-				<Crosshair values={crosshairValues} itemsFormat={formatCrosshair} style={crossHairStyle}/>
+				<Crosshair values={crosshairValues} itemsFormat={formatCrosshair}>
+					<div className='CrossHair'>
+						<h4 className='CrossHairTitle'>Cost</h4>
+						<p className='CrossHairField'>Amount: {crosshairValues.length ? formatValue(crosshairValues[0].x) : null} </p>
+						<p className='CrossHairField'>Cost : {crosshairValues.length ? formatValue(crosshairValues[0].y) : null} </p>
+					</div>
+				</Crosshair>
 			</XYPlot>
 		</div>
 	);
