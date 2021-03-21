@@ -44,7 +44,7 @@ const CostChart = () => {
 		return [
 			{x: getX(0), y: 0},
 			{x: getX(WITHDRAWAL_FEE), y: WITHDRAWAL_FEE},
-			{x: getX(WITHDRAWAL_FEE) * 2, y: getY(getX(WITHDRAWAL_FEE) * 2)}
+			{x: getX(WITHDRAWAL_FEE) * 1.5, y: getY(getX(WITHDRAWAL_FEE) * 1.5)}
 		]
 	}
 
@@ -89,8 +89,10 @@ const CostChart = () => {
 
 	return (
 		<div className='CostChartRoot'>
-			<label>Unit</label>
-			<button onClick={handleUnitToggle}>{unit.toUpperCase()}</button>
+			<div className='Unit'>
+				<label for='unit-switch'>Unit</label>
+				<button onClick={handleUnitToggle} id='unit-switch'>{unit.toUpperCase()}</button>
+			</div>
 			<XYPlot height={300} width={700}>
 				<LineSeries data={data} onNearestX={onNearestX}/>
 				<XAxis title={xAxisTitle()} tickFormat={tickFormat}/>
