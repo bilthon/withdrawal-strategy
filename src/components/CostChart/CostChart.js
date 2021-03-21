@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
 	XYPlot,
 	LineSeries,
@@ -19,12 +19,22 @@ const WITHDRAWAL_FEE = 50e3;
 const verticalStyle = {
 	strokeWidth: 2,
 	stroke: '#ff0000'
-}
+};
+
+const BTC_USD = 59000;
+
+const Units = {
+	SATS: 'sats',
+	USD: 'usd'
+};
 
 const CostChart = () => {
+	const [unit, setUnit] = useState(Units.SATS);
 
 	const onNearestX = (value, {event, innerX, index}) => {
 	}
+
+	const satsPerDollar = () => parseInt((1./BTC_USD) * 1e8);
 
 	const getX = (y) => parseInt((y - A) / B);
 
@@ -39,22 +49,54 @@ const CostChart = () => {
 	}
 
 	const tickFormat = (value, index, scale, tickTotal) => {
+		if (value < 1e3)
+			return `${value}`;
 		if (value < 1000e3)
 			return `${value / 1e3}K`;
 		else
 			return `${value / 1e6}M`;
+	};
+
+	const handleUnitToggle = () => {
+		if (unit === Units.SATS)
+			setUnit(Units.USD);
+		else
+			setUnit(Units.SATS);
 	}
 
-	const data = generateDataPoints();
+	let data = generateDataPoints();
+	if (unit !== Units.SATS) {
+		const factor = satsPerDollar();
+		data = data.map(pair => {
+			const {x, y} = pair;
+			return {x: (x / factor), y: (y / factor)};
+		});
+	}
+
+	const getWithdrawalCost = () => {
+		if (unit === Units.SATS) return WITHDRAWAL_FEE;
+		return WITHDRAWAL_FEE / satsPerDollar();
+	}
+
+	const getEquivalencePoint = () => {
+		if (unit === Units.SATS) return getX(WITHDRAWAL_FEE);
+		return getX(WITHDRAWAL_FEE) / satsPerDollar();
+	}
+
+	const xAxisTitle = () => `Amount to withdraw (${unit.toUpperCase()})`;
+
+	const yAxisTitle = () => `Cost (${unit.toUpperCase()})`;
 
 	return (
 		<div className='CostChartRoot'>
+			<label>Unit</label>
+			<button onClick={handleUnitToggle}>{unit.toUpperCase()}</button>
 			<XYPlot height={300} width={700}>
 				<LineSeries data={data} onNearestX={onNearestX}/>
-				<XAxis title='Amount to withdraw (sats)' tickFormat={tickFormat}/>
-				<YAxis title='Cost (sats)' tickFormat={tickFormat}/>
-				<HorizontalGridLines tickValues={[WITHDRAWAL_FEE]}/>
-				<VerticalGridLines tickValues={[getX(WITHDRAWAL_FEE)]} style={verticalStyle}/>
+				<XAxis title={xAxisTitle()} tickFormat={tickFormat}/>
+				<YAxis title={yAxisTitle()} tickFormat={tickFormat}/>
+				<HorizontalGridLines tickValues={[getWithdrawalCost()]}/>
+				<VerticalGridLines tickValues={[getEquivalencePoint()]} style={verticalStyle}/>
 			</XYPlot>
 		</div>
 	);
