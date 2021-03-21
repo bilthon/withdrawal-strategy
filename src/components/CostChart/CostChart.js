@@ -8,6 +8,7 @@ import {
 	VerticalGridLines,
 	Crosshair
  } from 'react-vis';
+import CrosshairContent from './CrosshairContent/CrosshairContent';
 import '../../../node_modules/react-vis/dist/style.css';
 import './CostChart.css';
 
@@ -135,18 +136,18 @@ const CostChart = () => {
 				<label>Unit</label>
 				<button onClick={handleUnitToggle}>{unit.toUpperCase()}</button>
 			</div>
-			<XYPlot height={300} width={700}>
+			<XYPlot height={300} width={700} onMouseLeave={onMouseLeave}>
 				<LineSeries data={unit === Units.SATS ? chartData : fiatChartData} onNearestX={onNearestX}/>
 				<XAxis title={xAxisTitle()} tickFormat={tickFormat}/>
 				<YAxis title={yAxisTitle()} tickFormat={tickFormat}/>
 				<HorizontalGridLines tickValues={[getWithdrawalCost()]}/>
 				<VerticalGridLines tickValues={[getEquivalencePoint()]} style={verticalStyle}/>
 				<Crosshair values={crosshairValues} itemsFormat={formatCrosshair}>
-					<div className='CrossHair'>
-						<h4 className='CrossHairTitle'>Cost</h4>
-						<p className='CrossHairField'>Amount: {crosshairValues.length ? formatValue(crosshairValues[0].x) : null} </p>
-						<p className='CrossHairField'>Cost : {crosshairValues.length ? formatValue(crosshairValues[0].y) : null} </p>
-					</div>
+					<CrosshairContent
+						crosshairValues={crosshairValues}
+						formatValue={formatValue}
+						getWithdrawalCost={getWithdrawalCost}
+						unit={unit}/>
 				</Crosshair>
 			</XYPlot>
 		</div>

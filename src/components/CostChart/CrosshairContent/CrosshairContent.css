@@ -1,0 +1,17 @@
+.CrossHair {
+	width: 12em;
+	padding: 1em;
+	background: rgba(45, 45, 49, 0.432);
+	color: white;
+	border-radius: 10px;
+}
+
+.CrossHairTitle {
+	text-align: center;
+	margin: 0 auto;
+	font-size: 12px;
+	font-weight: bold;
+}
+.CrossHairField {
+	margin: 0 2px 0 2px;
+}
