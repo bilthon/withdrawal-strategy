@@ -1,20 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
 	XYPlot,
 	LineSeries,
 	XAxis,
 	YAxis,
 	HorizontalGridLines,
-	VerticalGridLines } from 'react-vis';
+	VerticalGridLines,
+	Crosshair
+ } from 'react-vis';
 import '../../../node_modules/react-vis/dist/style.css';
 import './CostChart.css';
 
 // Constants of the linear equation y = A + B * x
-const A = -175;
-const B = 0.005017561465127948;
+const A = 0;
+const B = 0.005;
 
 // Withdrawal fees in sats
 const WITHDRAWAL_FEE = 50e3;
+
+// Interval (in sats) over which to draw different points.
+const CHART_DATA_STEP = 10e3;
+
+// How much more beyond the 'break even' 
+// point to display in the chart
+const EXTENSION_FACTOR = 1.5;
 
 const verticalStyle = {
 	strokeWidth: 2,
@@ -30,9 +39,10 @@ const Units = {
 
 const CostChart = () => {
 	const [unit, setUnit] = useState(Units.SATS);
+	const [crosshairValues, setCrosshairValues] = useState([]);
 
-	const onNearestX = (value, {event, innerX, index}) => {
-	}
+	const [chartData, setChartData] = useState([]);
+	const [fiatChartData, setFiatChartData] = useState([]);
 
 	const satsPerDollar = () => parseInt((1./BTC_USD) * 1e8);
 
@@ -40,13 +50,29 @@ const CostChart = () => {
 
 	const getY = (x) => parseInt(A + B * x);
 
-	const generateDataPoints = () => {
-		return [
-			{x: getX(0), y: 0},
-			{x: getX(WITHDRAWAL_FEE), y: WITHDRAWAL_FEE},
-			{x: getX(WITHDRAWAL_FEE) * 1.5, y: getY(getX(WITHDRAWAL_FEE) * 1.5)}
-		]
-	}
+	useEffect(() => {
+		console.log('useEffect called');
+		const xBreakEven = getX(WITHDRAWAL_FEE);
+		const xLimit = xBreakEven * EXTENSION_FACTOR;
+
+		console.log('xLimit: ', xLimit);
+		const data = [];
+		for (let i = 0; i < xLimit; i = i + CHART_DATA_STEP) {
+			data.push({ x: i, y: getY(i)});
+		}
+		setChartData(data);
+	}, [A, B]);
+
+	useEffect((a, b) => {
+		if (unit !== Units.SATS && fiatChartData.length === 0) {
+			const factor = satsPerDollar();
+			const adjustedData = chartData.map(pair => {
+				const { x, y } = pair;
+				return { x: (x / factor), y: (y / factor) };
+			});
+			setFiatChartData(adjustedData);
+		}
+	}, [unit]);
 
 	const tickFormat = (value, index, scale, tickTotal) => {
 		if (value < 1e3)
@@ -64,15 +90,6 @@ const CostChart = () => {
 			setUnit(Units.SATS);
 	}
 
-	let data = generateDataPoints();
-	if (unit !== Units.SATS) {
-		const factor = satsPerDollar();
-		data = data.map(pair => {
-			const {x, y} = pair;
-			return {x: (x / factor), y: (y / factor)};
-		});
-	}
-
 	const getWithdrawalCost = () => {
 		if (unit === Units.SATS) return WITHDRAWAL_FEE;
 		return WITHDRAWAL_FEE / satsPerDollar();
@@ -87,18 +104,34 @@ const CostChart = () => {
 
 	const yAxisTitle = () => `Cost (${unit.toUpperCase()})`;
 
+	const onMouseLeave = () => setCrosshairValues([]);
+
+	const onNearestX = (value, index) => {
+		setCrosshairValues([value]);
+	}
+
+	const formatCrosshair = dataPoints => {
+		return dataPoints.map(dataPoint => {
+			return {
+				title: 'Cost',
+				value: new Intl.NumberFormat('en', {maximumFractionDigits: 2}).format(dataPoint.y)
+			}
+		});
+	}
+
 	return (
 		<div className='CostChartRoot'>
 			<div className='Unit'>
-				<label for='unit-switch'>Unit</label>
-				<button onClick={handleUnitToggle} id='unit-switch'>{unit.toUpperCase()}</button>
+				<label>Unit</label>
+				<button onClick={handleUnitToggle}>{unit.toUpperCase()}</button>
 			</div>
-			<XYPlot height={300} width={700}>
-				<LineSeries data={data} onNearestX={onNearestX}/>
+			<XYPlot height={300} width={700} onMouseLeave={onMouseLeave}>
+				<LineSeries data={unit === Units.SATS ? chartData : fiatChartData} onNearestX={onNearestX}/>
 				<XAxis title={xAxisTitle()} tickFormat={tickFormat}/>
 				<YAxis title={yAxisTitle()} tickFormat={tickFormat}/>
 				<HorizontalGridLines tickValues={[getWithdrawalCost()]}/>
 				<VerticalGridLines tickValues={[getEquivalencePoint()]} style={verticalStyle}/>
+				<Crosshair values={crosshairValues} itemsFormat={formatCrosshair}/>
 			</XYPlot>
 		</div>
 	);
