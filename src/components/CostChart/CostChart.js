@@ -119,6 +119,12 @@ const CostChart = () => {
 		});
 	}
 
+	const crossHairStyle = {
+		title: {
+			display: 'none'
+		}
+	};
+
 	return (
 		<div className='CostChartRoot'>
 			<div className='Unit'>
@@ -131,7 +137,7 @@ const CostChart = () => {
 				<YAxis title={yAxisTitle()} tickFormat={tickFormat}/>
 				<HorizontalGridLines tickValues={[getWithdrawalCost()]}/>
 				<VerticalGridLines tickValues={[getEquivalencePoint()]} style={verticalStyle}/>
-				<Crosshair values={crosshairValues} itemsFormat={formatCrosshair}/>
+				<Crosshair values={crosshairValues} itemsFormat={formatCrosshair} style={crossHairStyle}/>
 			</XYPlot>
 		</div>
 	);
