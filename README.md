@@ -1,3 +1,6 @@
+# withdrawal-strategy
+Simple web tool aimed to help visualize and quantify the savings of the indirect BTC withdrawal strategy
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
