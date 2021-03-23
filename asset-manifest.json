@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/withdrawal-strategy/static/css/main.bb318126.chunk.css",
+    "main.js": "/withdrawal-strategy/static/js/main.9b5c9255.chunk.js",
+    "main.js.map": "/withdrawal-strategy/static/js/main.9b5c9255.chunk.js.map",
+    "runtime-main.js": "/withdrawal-strategy/static/js/runtime-main.43ea50dc.js",
+    "runtime-main.js.map": "/withdrawal-strategy/static/js/runtime-main.43ea50dc.js.map",
+    "static/css/2.adc6f56e.chunk.css": "/withdrawal-strategy/static/css/2.adc6f56e.chunk.css",
+    "static/js/2.82ee03f5.chunk.js": "/withdrawal-strategy/static/js/2.82ee03f5.chunk.js",
+    "static/js/2.82ee03f5.chunk.js.map": "/withdrawal-strategy/static/js/2.82ee03f5.chunk.js.map",
+    "static/js/3.191beaac.chunk.js": "/withdrawal-strategy/static/js/3.191beaac.chunk.js",
+    "static/js/3.191beaac.chunk.js.map": "/withdrawal-strategy/static/js/3.191beaac.chunk.js.map",
+    "index.html": "/withdrawal-strategy/index.html",
+    "static/css/2.adc6f56e.chunk.css.map": "/withdrawal-strategy/static/css/2.adc6f56e.chunk.css.map",
+    "static/css/main.bb318126.chunk.css.map": "/withdrawal-strategy/static/css/main.bb318126.chunk.css.map",
+    "static/js/2.82ee03f5.chunk.js.LICENSE.txt": "/withdrawal-strategy/static/js/2.82ee03f5.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/withdrawal-strategy/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.43ea50dc.js",
+    "static/css/2.adc6f56e.chunk.css",
+    "static/js/2.82ee03f5.chunk.js",
+    "static/css/main.bb318126.chunk.css",
+    "static/js/main.9b5c9255.chunk.js"
+  ]
+}
