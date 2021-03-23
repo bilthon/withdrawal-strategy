@@ -1,5 +1,5 @@
 .CrossHair {
-	width: 12em;
+	width: 15em;
 	padding: 1em;
 	background: rgba(45, 45, 49, 0.432);
 	color: white;
@@ -13,5 +13,4 @@
 	font-weight: bold;
 }
 .CrossHairField {
-	margin: 0 2px 0 2px;
-}
+	margin: 0 2px 0 2px;}

@@ -17,10 +17,11 @@ const CrosshairContent = ({ crosshairValues, formatValue, getWithdrawalCost, uni
 		const savings = getWithdrawalCost() - y;
 		content = (
 			<div className='CrossHair'>
-				<h4 className='CrossHairTitle'>Cost</h4>
+				<h4 className='CrossHairTitle'>Withdrawal</h4>
 				<p className='CrossHairField'>Amount: {_formatValue(crosshairValues[0].x)} </p>
-				<p className='CrossHairField'>Cost : {_formatValue(crosshairValues[0].y)} </p>
-				<p className='CrossHairField'>Savings : {_formatValue(savings)} </p>
+				<p className='CrossHairField'>Direct Cost : {_formatValue(getWithdrawalCost())} </p>
+				<p className='CrossHairField'>Indirect Cost : {_formatValue(crosshairValues[0].y)} </p>
+				<p className='CrossHairField' style={savings < 0 ? {color: '#FFE7E7', fontSize: 'bold'} : {}}>Savings : {_formatValue(savings)} </p>
 			</div>
 		);
 	}
