@@ -8,6 +8,7 @@ import {
 	VerticalGridLines,
 	Crosshair
  } from 'react-vis';
+import cctx from 'ccxt';
 import CrosshairContent from './CrosshairContent/CrosshairContent';
 import '../../../node_modules/react-vis/dist/style.css';
 import './CostChart.css';
@@ -31,21 +32,20 @@ const verticalStyle = {
 	stroke: '#ff0000'
 };
 
-const BTC_USD = 59000;
-
 const Units = {
 	SATS: 'sats',
 	USD: 'usd'
 };
 
 const CostChart = () => {
+	const [btcPrice, setBtcPrice] = useState(0);
 	const [unit, setUnit] = useState(Units.SATS);
 	const [crosshairValues, setCrosshairValues] = useState([]);
 
 	const [chartData, setChartData] = useState([]);
 	const [fiatChartData, setFiatChartData] = useState([]);
 
-	const satsPerDollar = () => parseInt((1./BTC_USD) * 1e8);
+	const satsPerDollar = () => btcPrice > 0 ? parseInt((1./ btcPrice) * 1e8) : 1;
 
 	const getX = (y) => parseInt((y - A) / B);
 
@@ -62,7 +62,7 @@ const CostChart = () => {
 		setChartData(data);
 	}, [A, B]);
 
-	useEffect((a, b) => {
+	useEffect(() => {
 		if (unit !== Units.SATS && fiatChartData.length === 0) {
 			const factor = satsPerDollar();
 			const adjustedData = chartData.map(pair => {
@@ -72,6 +72,17 @@ const CostChart = () => {
 			setFiatChartData(adjustedData);
 		}
 	}, [unit]);
+
+	useEffect(() => {
+		const fetchPrice = async () => {
+			const exchangeClass = cctx['binance'];
+			const binance = new exchangeClass({});
+			const tickers = await binance.fetchTickers();
+			const btcPrice = tickers['BTC/USDT'].last;
+			setBtcPrice(btcPrice);
+		}
+		fetchPrice();
+	}, []);
 
 	const tickFormat = (value, index, scale, tickTotal) => {
 		return formatInt(value);
@@ -134,7 +145,10 @@ const CostChart = () => {
 		<div className='CostChartRoot'>
 			<div className='Unit'>
 				<label>Unit</label>
-				<button onClick={handleUnitToggle}>{unit.toUpperCase()}</button>
+				<button onClick={handleUnitToggle}>{unit ? unit.toUpperCase() : ''}</button>
+			</div>
+			<div>
+				<p>Price: {btcPrice} USD</p>
 			</div>
 			<XYPlot height={300} width={700} onMouseLeave={onMouseLeave}>
 				<LineSeries data={unit === Units.SATS ? chartData : fiatChartData} onNearestX={onNearestX}/>
