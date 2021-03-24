@@ -13,7 +13,7 @@ const CrosshairContent = ({ crosshairValues, formatValue, getWithdrawalCost, uni
 	}
 
 	if (crosshairValues.length > 0) {
-		const { x, y } = crosshairValues[0];
+		const { y } = crosshairValues[0];
 		const savings = getWithdrawalCost() - y;
 		content = (
 			<div className='CrossHair'>
