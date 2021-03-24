@@ -38,9 +38,9 @@ const fixedCostStyle = {
 	stroke: '#EEB757'
 };
 
-const variableCostTyle = {
+const variableCostStyle = {
 	color: '#588E61'
-}
+};
 
 const Units = {
 	SATS: 'sats',
@@ -164,8 +164,7 @@ const CostChart = () => {
 				<LineSeries
 					data={unit === Units.SATS ? chartData : fiatChartData}
 					onNearestX={onNearestX}
-					stroke={2}
-					color={variableCostTyle.color}
+					color={variableCostStyle.color}
 				/>
 				<XAxis title={xAxisTitle()} tickFormat={tickFormat}/>
 				<YAxis title={yAxisTitle()} tickFormat={tickFormat}/>
@@ -180,7 +179,7 @@ const CostChart = () => {
 				</Crosshair>
 				<DiscreteColorLegend items={[
 					{title:'Direct Withdrawal', color:fixedCostStyle.stroke},
-					{title:'Indirect Withdrawal', color: variableCostTyle.color}
+					{title:'Indirect Withdrawal', color: variableCostStyle.color}
 				]}/>
 			</XYPlot>
 		</div>
