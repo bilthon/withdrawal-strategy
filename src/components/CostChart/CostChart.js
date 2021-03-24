@@ -6,7 +6,8 @@ import {
 	YAxis,
 	HorizontalGridLines,
 	VerticalGridLines,
-	Crosshair
+	Crosshair,
+  DiscreteColorLegend
  } from 'react-vis';
 import cctx from 'ccxt';
 import CrosshairContent from './CrosshairContent/CrosshairContent';
@@ -31,6 +32,15 @@ const verticalStyle = {
 	strokeWidth: 2,
 	stroke: '#ff0000'
 };
+
+const fixedCostStyle = {
+	strokeWidth: 2,
+	stroke: '#EEB757'
+};
+
+const variableCostTyle = {
+	color: '#588E61'
+}
 
 const Units = {
 	SATS: 'sats',
@@ -151,10 +161,15 @@ const CostChart = () => {
 				<p>Price: {btcPrice} USD</p>
 			</div>
 			<XYPlot height={300} width={700} onMouseLeave={onMouseLeave}>
-				<LineSeries data={unit === Units.SATS ? chartData : fiatChartData} onNearestX={onNearestX}/>
+				<LineSeries
+					data={unit === Units.SATS ? chartData : fiatChartData}
+					onNearestX={onNearestX}
+					stroke={2}
+					color={variableCostTyle.color}
+				/>
 				<XAxis title={xAxisTitle()} tickFormat={tickFormat}/>
 				<YAxis title={yAxisTitle()} tickFormat={tickFormat}/>
-				<HorizontalGridLines tickValues={[getWithdrawalCost()]}/>
+				<HorizontalGridLines tickValues={[getWithdrawalCost()]} style={fixedCostStyle}/>
 				<VerticalGridLines tickValues={[getEquivalencePoint()]} style={verticalStyle}/>
 				<Crosshair values={crosshairValues} itemsFormat={formatCrosshair}>
 					<CrosshairContent
@@ -163,6 +178,10 @@ const CostChart = () => {
 						getWithdrawalCost={getWithdrawalCost}
 						unit={unit}/>
 				</Crosshair>
+				<DiscreteColorLegend items={[
+					{title:'Direct Withdrawal', color:fixedCostStyle.stroke},
+					{title:'Indirect Withdrawal', color: variableCostTyle.color}
+				]}/>
 			</XYPlot>
 		</div>
 	);
