@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { 
 	XYPlot,
 	LineSeries,
@@ -9,6 +9,7 @@ import {
 	Crosshair,
   DiscreteColorLegend
  } from 'react-vis';
+import { LocaleContext } from '../../pages/Main/Main';
 import cctx from 'ccxt';
 import CrosshairContent from './CrosshairContent/CrosshairContent';
 import '../../../node_modules/react-vis/dist/style.css';
@@ -54,6 +55,8 @@ const CostChart = () => {
 
 	const [chartData, setChartData] = useState([]);
 	const [fiatChartData, setFiatChartData] = useState([]);
+
+	const locale = useContext(LocaleContext);
 
 	const satsPerDollar = () => btcPrice > 0 ? parseInt((1./ btcPrice) * 1e8) : 1;
 
