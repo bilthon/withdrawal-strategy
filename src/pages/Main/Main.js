@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import CostChart from '../../components/CostChart/CostChart';
+import { IntlProvider } from 'react-intl';
+import Translations from '../../utils/Translations';
 import './Main.css';
-
-export const LocaleContext = React.createContext();
 
 const Main = () => {
 
@@ -14,7 +14,7 @@ const Main = () => {
 
 	return (
 		<div className='Main'>
-			<LocaleContext.Provider value={locale}>
+			<IntlProvider locale={locale} messages={Translations[locale]}>
 				<label for="locale-select">Choose a language:</label>
 				<select onChange={onLanguageSelected} name="locales" id="locale-select">
 						<option value="en">English</option>
@@ -22,7 +22,7 @@ const Main = () => {
 						<option value="pt">Portuguese</option>
 				</select>
 				<CostChart/>
-			</LocaleContext.Provider>
+			</IntlProvider>
 		</div>
 	)
 }

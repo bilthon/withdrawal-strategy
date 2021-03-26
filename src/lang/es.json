@@ -1,0 +1,8 @@
+{
+	"app.costChart.unit": "Unidad",
+	"app.costChart.priceMessage": "Precio: {btcPrice} USD",
+	"app.costChart.directWithdrawal": "Retiro Directo",
+	"app.costChart.indirectWithdrawal": "Retiro Indirecto",
+	"app.costChart.xAxis": "Monto a Retirar ({unit})",
+	"app.costChart.yAxis": "Costo del Retiro ({unit})"
+}

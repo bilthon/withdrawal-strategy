@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
 	XYPlot,
 	LineSeries,
@@ -9,7 +9,7 @@ import {
 	Crosshair,
   DiscreteColorLegend
  } from 'react-vis';
-import { LocaleContext } from '../../pages/Main/Main';
+import { FormattedMessage, useIntl } from 'react-intl';
 import cctx from 'ccxt';
 import CrosshairContent from './CrosshairContent/CrosshairContent';
 import '../../../node_modules/react-vis/dist/style.css';
@@ -56,7 +56,7 @@ const CostChart = () => {
 	const [chartData, setChartData] = useState([]);
 	const [fiatChartData, setFiatChartData] = useState([]);
 
-	const locale = useContext(LocaleContext);
+	const intl = useIntl();
 
 	const satsPerDollar = () => btcPrice > 0 ? parseInt((1./ btcPrice) * 1e8) : 1;
 
@@ -118,9 +118,18 @@ const CostChart = () => {
 		return getX(WITHDRAWAL_FEE) / satsPerDollar();
 	}
 
-	const xAxisTitle = () => `Amount to withdraw (${unit.toUpperCase()})`;
+	const xAxisTitle = () => intl.formatMessage(
+		{
+			id: 'app.costChart.xAxis',
+			description: 'x axis',
+			defaultMessage: `Amount to withdraw (${unit.toUpperCase()})`
+		}, {unit: unit});
 
-	const yAxisTitle = () => `Cost (${unit.toUpperCase()})`;
+	const yAxisTitle = () => intl.formatMessage({
+		id: 'app.costChart.yAxis',
+		description: 'y axis title',
+		defaultMessage: `Cost (${unit.toUpperCase()})`
+	}, {unit: unit});
 
 	const onMouseLeave = () => setCrosshairValues([]);
 
@@ -161,7 +170,11 @@ const CostChart = () => {
 				<button onClick={handleUnitToggle}>{unit ? unit.toUpperCase() : ''}</button>
 			</div>
 			<div>
-				<p>Price: {btcPrice} USD</p>
+				<FormattedMessage
+					id="app.costChart.priceMessage"
+					defaultMessage={`Price: ${btcPrice} USD`}
+					values={{btcPrice: btcPrice}}
+				/>
 			</div>
 			<XYPlot height={300} width={700} onMouseLeave={onMouseLeave}>
 				<LineSeries
@@ -181,8 +194,14 @@ const CostChart = () => {
 						unit={unit}/>
 				</Crosshair>
 				<DiscreteColorLegend items={[
-					{title:'Direct Withdrawal', color:fixedCostStyle.stroke},
-					{title:'Indirect Withdrawal', color: variableCostStyle.color}
+					<FormattedMessage
+						id="app.costChart.directWithdrawal"
+						defaultMessage={'Direct Withdrawal'}
+					/>,
+					<FormattedMessage
+						id="app.costChart.indirectWithdrawal"
+						defaultMessage={'Indirect Withdrawal'}
+					/>
 				]}/>
 			</XYPlot>
 		</div>
