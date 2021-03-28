@@ -1,12 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CostChart from '../../components/CostChart/CostChart';
+import Problem from '../../components/Problem/Problem';
 import { IntlProvider } from 'react-intl';
 import Translations from '../../utils/Translations';
+import cctx from 'ccxt';
 import './Main.css';
 
-const Main = () => {
+const WITHDRAWAL_COST = 50e3;
 
+const Main = () => {
+	const [btcPrice, setBtcPrice] = useState(0);
 	const [locale, setLocale] = useState('en');
+
+	useEffect(() => {
+		const fetchPrice = async () => {
+			const exchangeClass = cctx['binance'];
+			const binance = new exchangeClass({});
+			const tickers = await binance.fetchTickers();
+			const btcPrice = tickers['BTC/USDT'].last;
+			setBtcPrice(btcPrice);
+		}
+		fetchPrice();
+	}, []);
 
 	const onLanguageSelected = event => {
 		setLocale(event.target.value);
@@ -21,7 +36,8 @@ const Main = () => {
 						<option value="es">Spanish</option>
 						<option value="pt">Portuguese</option>
 				</select>
-				<CostChart/>
+				<Problem btcPrice={btcPrice} withdrawalCost={WITHDRAWAL_COST}/>
+				<CostChart btcPrice={btcPrice}/>
 			</IntlProvider>
 		</div>
 	)

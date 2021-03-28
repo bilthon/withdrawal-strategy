@@ -9,5 +9,7 @@
 	"app.costChart.crosshair.amount": "Amount: {amount}",
 	"app.costChart.crosshair.direct": "Direct Cost: {directCost}",
 	"app.costChart.crosshair.indirect": "Indirect Cost : {indirectCost}",
-	"app.costChart.crosshair.saving": "Savings : {saving}"
+	"app.costChart.crosshair.saving": "Savings : {saving}",
+	"app.problem.title": "The Problem",
+	"app.problem.content": "You want to buy a small amount of Bitcoin, but Binance charges you {satsAmount} satoshis per withdraw. That's {usdAmount} USD at current market prices! This forces you to eiter make a large purchase, not buy it, or (worst) buy it and just leave it at the exchange. 🤦"
 }

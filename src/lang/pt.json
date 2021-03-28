@@ -9,5 +9,7 @@
 	"app.costChart.crosshair.amount": "Quantidade: {amount}",
 	"app.costChart.crosshair.direct": "Custo Saque Direto: {directCost}",
 	"app.costChart.crosshair.indirect": "Custo Saque Indirecto : {indirectCost}",
-	"app.costChart.crosshair.saving": "Economía : {saving}"
+	"app.costChart.crosshair.saving": "Economía : {saving}",
+	"app.problem.title": "O Problema",
+	"app.problem.content": "Você quer comprar Bitcoin, mas a Binance cobra {satsAmount} satoshis por saque. O que custa a {usdAmount} USD! Você precisa agora fazer uma compra de alto valor, você desiste da compra, ou (pior) você compra e deixa no exchange. 🤦"
 }

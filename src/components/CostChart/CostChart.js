@@ -10,7 +10,6 @@ import {
   DiscreteColorLegend
  } from 'react-vis';
 import { FormattedMessage, useIntl } from 'react-intl';
-import cctx from 'ccxt';
 import CrosshairContent from './CrosshairContent/CrosshairContent';
 import '../../../node_modules/react-vis/dist/style.css';
 import './CostChart.css';
@@ -48,8 +47,7 @@ const Units = {
 	USD: 'usd'
 };
 
-const CostChart = () => {
-	const [btcPrice, setBtcPrice] = useState(0);
+const CostChart = ({ btcPrice }) => {
 	const [unit, setUnit] = useState(Units.SATS);
 	const [crosshairValues, setCrosshairValues] = useState([]);
 
@@ -85,17 +83,6 @@ const CostChart = () => {
 			setFiatChartData(adjustedData);
 		}
 	}, [unit]);
-
-	useEffect(() => {
-		const fetchPrice = async () => {
-			const exchangeClass = cctx['binance'];
-			const binance = new exchangeClass({});
-			const tickers = await binance.fetchTickers();
-			const btcPrice = tickers['BTC/USDT'].last;
-			setBtcPrice(btcPrice);
-		}
-		fetchPrice();
-	}, []);
 
 	const tickFormat = (value, index, scale, tickTotal) => {
 		return formatInt(value);
