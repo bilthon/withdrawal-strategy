@@ -4,5 +4,10 @@
 	"app.costChart.directWithdrawal": "Direct Withdrawal",
 	"app.costChart.indirectWithdrawal": "Indirect Withdrawal",
 	"app.costChart.xAxis": "Amount to Withdraw ({unit})",
-	"app.costChart.yAxis": "Withdrawal Cost ({unit})"
+	"app.costChart.yAxis": "Withdrawal Cost ({unit})",
+	"app.costChart.crosshair.title": "Withdrawal",
+	"app.costChart.crosshair.amount": "Amount: {amount}",
+	"app.costChart.crosshair.direct": "Direct Cost: {directCost}",
+	"app.costChart.crosshair.indirect": "Indirect Cost : {indirectCost}",
+	"app.costChart.crosshair.saving": "Savings : {saving}"
 }

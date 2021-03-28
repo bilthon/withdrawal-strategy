@@ -4,5 +4,10 @@
 	"app.costChart.directWithdrawal": "Retiro Directo",
 	"app.costChart.indirectWithdrawal": "Retiro Indirecto",
 	"app.costChart.xAxis": "Monto a Retirar ({unit})",
-	"app.costChart.yAxis": "Costo del Retiro ({unit})"
+	"app.costChart.yAxis": "Costo del Retiro ({unit})",
+	"app.costChart.crosshair.title": "Retiro",
+	"app.costChart.crosshair.amount": "Cantidad: {amount}",
+	"app.costChart.crosshair.direct": "Costo Directo: {directCost}",
+	"app.costChart.crosshair.indirect": "Costo Indirecto : {indirectCost}",
+	"app.costChart.crosshair.saving": "Ahorro : {saving}"
 }

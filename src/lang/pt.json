@@ -4,5 +4,10 @@
 	"app.costChart.directWithdrawal": "Saque Directo",
 	"app.costChart.indirectWithdrawal": "Saque Indirecto",
 	"app.costChart.xAxis": "Quantidade à sacar ({unit})",
-	"app.costChart.yAxis": "Custo do saque ({unit})"
+	"app.costChart.yAxis": "Custo do saque ({unit})",
+	"app.costChart.crosshair.title": "Saque",
+	"app.costChart.crosshair.amount": "Quantidade: {amount}",
+	"app.costChart.crosshair.direct": "Custo Saque Direto: {directCost}",
+	"app.costChart.crosshair.indirect": "Custo Saque Indirecto : {indirectCost}",
+	"app.costChart.crosshair.saving": "Economía : {saving}"
 }
