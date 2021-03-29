@@ -11,5 +11,7 @@
 	"app.costChart.crosshair.indirect": "Costo Indirecto : {indirectCost}",
 	"app.costChart.crosshair.saving": "Ahorro : {saving}",
 	"app.problem.title": "El Problema",
-	"app.problem.content": "Quieres comprar una pequeña cantidad de Bitcoin, pero Binance te cobra {satsAmount} satoshis por retiro. Eso equivale a {usdAmount} USD al actual precio de mercado! Esto te fuerza a realizar una compra grande, no comprar, o (peor) comprar y dejarlo en la plataforma. 🤦"
+	"app.problem.content": "Quieres comprar una pequeña cantidad de Bitcoin, pero Binance te cobra {satsAmount} satoshis por retiro. Eso equivale a {usdAmount} USD al actual precio de mercado! Esto te fuerza a realizar una compra grande, no comprar, o (peor) comprar y dejarlo en la plataforma. 🤦",
+	"app.solution.title": "La Solución",
+	"app.solution.content": "Aprovechando el bajo costo del retiro de Litecoin, puedes ahorrar mas del 90% de lo que de otra forma estarías pagando en comisión de retiro."
 }

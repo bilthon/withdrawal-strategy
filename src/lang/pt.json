@@ -11,5 +11,7 @@
 	"app.costChart.crosshair.indirect": "Custo Saque Indirecto : {indirectCost}",
 	"app.costChart.crosshair.saving": "Economía : {saving}",
 	"app.problem.title": "O Problema",
-	"app.problem.content": "Você quer comprar Bitcoin, mas a Binance cobra {satsAmount} satoshis por saque. O que custa a {usdAmount} USD! Você precisa agora fazer uma compra de alto valor, você desiste da compra, ou (pior) você compra e deixa no exchange. 🤦"
+	"app.problem.content": "Você quer comprar Bitcoin, mas a Binance cobra {satsAmount} satoshis por saque. O que custa a {usdAmount} USD! Você precisa agora fazer uma compra de alto valor, você desiste da compra, ou (pior) você compra e deixa no exchange. 🤦",
+	"app.solution.title": "A Solução",
+	"app.solution.content": "Aproveitando o baixo custo do saque de Litecoin, você pode economizar em até mais de 90% do que de outra forma sería pago em taxa de saque."
 }
