@@ -3,6 +3,7 @@ import CostChart from '../../components/CostChart/CostChart';
 import Problem from '../../components/Problem/Problem';
 import Solution from '../../components/Solution/Solution';
 import Objection from '../../components/Objection/Objection';
+import Links from '../../components/Links/Links';
 import { IntlProvider } from 'react-intl';
 import Translations from '../../utils/Translations';
 import cctx from 'ccxt';
@@ -42,6 +43,7 @@ const Main = () => {
 				<Solution/>
 				<Objection/>
 				<CostChart btcPrice={btcPrice}/>
+				<Links/>
 			</IntlProvider>
 		</div>
 	)

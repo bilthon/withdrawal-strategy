@@ -18,5 +18,6 @@
 	"app.objection.paragraph1": "Claro, y ahora terminaste con una shitcoin, no? Es cierto, pero no tienes que quedártela por mucho más tiempo. Puedes retirarla directamente a la dirección de un servicio de intercambio rápido, al cual tendrá que proporcionar la dirección de su billetera.",
 	"app.objection.paragraph2": "Esto funciona porque mientras Binance le cobra una tarifa plana, estos servicios de intercambio cobran una comisión proporcional (generalmente entre el 1% y el 0.5%).",
 	"app.objection.paragraph3": "Puede usar el gráfico interactivo para comparar los costos de un retiro directo frente a uno indirecto (utilizando estos servicios de intercambio). El eje X es la cantidad que debe retirar y el eje Y corresponde al costo.",
-	"app.objection.paragraph4": "Hay un punto en el que esta maniobra de retirada indirecta deja de tener sentido económico, y eso está representado por la línea vertical roja. El valor exacto de este límite superior depende del precio de Bitcoin."
+	"app.objection.paragraph4": "Hay un punto en el que esta maniobra de retirada indirecta deja de tener sentido económico, y eso está representado por la línea vertical roja. El valor exacto de este límite superior depende del precio de Bitcoin.",
+	"app.links.title": "Bien, entonces, ¿qué son estos 'servicios de intercambio'?"
 }

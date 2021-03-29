@@ -18,5 +18,6 @@
 	"app.objection.paragraph1": "Of course, and now you're stuck with a shitcoin, right? true, but you don't have to hold it for much longer. You can withdraw it directly to a swap service address, to which you'll provide your wallet's address.",
 	"app.objection.paragraph2": "This works because while Binance charges you a flat fee, these swap services charge a proportional one (usually between 1% and 0.5%).",
 	"app.objection.paragraph3": "You can use the chart below to compare the costs of a direct withdrawal vs an indirect one (by using these swap services). The X axis is the amount you with to withdraw, and the Y axis corresponds to the cost.",
-	"app.objection.paragraph4": "There's a point at which all these indirect withdrawal shenanigans stop making economical sense, and that's represented by the vertical red line. The exact value of this upper limit is dependent on the price of Bitcoin."
+	"app.objection.paragraph4": "There's a point at which all these indirect withdrawal shenanigans stop making economical sense, and that's represented by the vertical red line. The exact value of this upper limit is dependent on the price of Bitcoin.",
+	"app.links.title": "Ok, so what are these 'swap services'?"
 }

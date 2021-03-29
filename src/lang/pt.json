@@ -18,5 +18,6 @@
 	"app.objection.paragraph1": "Claro, e agora você está preso com uma shitcoin, certo? verdade, mas você não precisa ficar segurando ela por muito tempo. Você pode retirá-la diretamente para o endereço de serviço de troca, ao qual fornecerá o endereço de sua carteira.",
 	"app.objection.paragraph2": "Isso funciona porque enquanto a Binance cobra uma taxa fixa, esses serviços de swap cobram uma taxa proporcional (geralmente entre 1% e 0,5%).",
 	"app.objection.paragraph3": "Você pode usar o gráfico interativo abaixo para comparar os custos de uma retirada direta com uma indireta (usando esses serviços de troca). O eixo X é a quantia que você deve sacar, e o eixo Y corresponde ao custo.",
-	"app.objection.paragraph4": "Existe um ponto em que essa manobra de retirada indireta deixa de fazer sentido economicamente, isso é representado pela linha vermelha vertical. O valor exato desse limite máximo depende do preço do Bitcoin."
+	"app.objection.paragraph4": "Existe um ponto em que essa manobra de retirada indireta deixa de fazer sentido economicamente, isso é representado pela linha vermelha vertical. O valor exato desse limite máximo depende do preço do Bitcoin.",
+	"app.links.title": "Ok, então o quais são esses 'serviços de troca'?"
 }
