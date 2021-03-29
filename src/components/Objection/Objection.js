@@ -18,7 +18,7 @@ const Objection = () => {
 	});
 
 	return (
-		<div className='ObjectionContent'>
+		<div className='ParagraphContainer'>
 			<h2>{_getTitle()}</h2>
 			<p>{generateParagraph('app.objection.paragraph1')}</p>
 			<p>{generateParagraph('app.objection.paragraph2')}</p>

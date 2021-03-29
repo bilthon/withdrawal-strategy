@@ -18,7 +18,7 @@ const Problem = ({ btcPrice, withdrawalCost }) => {
 	});
 
 	return (
-		<div className='ProblemContent'>
+		<div className='ParagraphContainer'>
 			<h2>{ _getTitle() }</h2>
 			<p>{ _getContent() }</p>
 		</div>

@@ -15,7 +15,7 @@ const Solution = () => {
 	});
 
 	return (
-		<div className='SolutionContent'>
+		<div className='ParagraphContainer'>
 			<h2>{ _getTitle() }</h2>
 			<p>{ _getContent() }</p>
 		</div>
