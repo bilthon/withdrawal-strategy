@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CostChart from '../../components/CostChart/CostChart';
 import Problem from '../../components/Problem/Problem';
 import Solution from '../../components/Solution/Solution';
+import Objection from '../../components/Objection/Objection';
 import { IntlProvider } from 'react-intl';
 import Translations from '../../utils/Translations';
 import cctx from 'ccxt';
@@ -39,6 +40,7 @@ const Main = () => {
 				</select>
 				<Problem btcPrice={btcPrice} withdrawalCost={WITHDRAWAL_COST}/>
 				<Solution/>
+				<Objection/>
 				<CostChart btcPrice={btcPrice}/>
 			</IntlProvider>
 		</div>

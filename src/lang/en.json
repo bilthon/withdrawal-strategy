@@ -13,5 +13,10 @@
 	"app.problem.title": "The Problem",
 	"app.problem.content": "You want to buy a small amount of Bitcoin, but Binance charges you {satsAmount} satoshis per withdraw. That's {usdAmount} USD at current market prices! This forces you to eiter make a large purchase, not buy it, or (worst) buy it and just leave it at the exchange. 🤦",
 	"app.solution.title": "The Solution",
-	"app.solution.content": "By leveraging the low cost of the Litecoin withdrawal, you can save north of 90% of what you'd otherwise spend in withdrawal fees."
+	"app.solution.content": "By leveraging the low cost of the Litecoin withdrawal, you can save north of 90% of what you'd otherwise spend in withdrawal fees.",
+	"app.objection.title": "But.. what I wanted was Bitcoin!",
+	"app.objection.paragraph1": "Of course, and now you're stuck with a shitcoin, right? true, but you don't have to hold it for much longer. You can withdraw it directly to a swap service address, to which you'll provide your wallet's address.",
+	"app.objection.paragraph2": "This works because while Binance charges you a flat fee, these swap services charge a proportional one (usually between 1% and 0.5%).",
+	"app.objection.paragraph3": "You can use the chart below to compare the costs of a direct withdrawal vs an indirect one (by using these swap services). The X axis is the amount you with to withdraw, and the Y axis corresponds to the cost.",
+	"app.objection.paragraph4": "There's a point at which all these indirect withdrawal shenanigans stop making economical sense, and that's represented by the vertical red line. The exact value of this upper limit is dependent on the price of Bitcoin."
 }
