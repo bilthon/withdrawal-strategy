@@ -150,6 +150,17 @@ const CostChart = ({ btcPrice }) => {
 		}
 	}
 
+	const _getChartWidth = () => {
+		if (window.innerWidth > 320)
+			return parseInt(window.innerWidth * 0.7);
+		else
+			return window.innerWidth;
+	}
+
+	// Calculating chart width
+	const chartWidth = _getChartWidth();
+	const chartHeight = parseInt(chartWidth * 0.4);
+
 	return (
 		<div className='CostChartRoot'>
 			<div className='Unit'>
@@ -163,7 +174,11 @@ const CostChart = ({ btcPrice }) => {
 					values={{btcPrice: btcPrice}}
 				/>
 			</div>
-			<XYPlot height={300} width={700} onMouseLeave={onMouseLeave}>
+			<XYPlot
+				className='Plot'
+				height={chartHeight}
+				width={chartWidth}
+				onMouseLeave={onMouseLeave}>
 				<LineSeries
 					data={unit === Units.SATS ? chartData : fiatChartData}
 					onNearestX={onNearestX}
