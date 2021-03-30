@@ -4,10 +4,16 @@ import Problem from '../../components/Problem/Problem';
 import Solution from '../../components/Solution/Solution';
 import Objection from '../../components/Objection/Objection';
 import Links from '../../components/Links/Links';
+import ReactGA from 'react-ga';
 import { IntlProvider } from 'react-intl';
 import Translations from '../../utils/Translations';
 import cctx from 'ccxt';
 import './Main.css';
+
+ReactGA.initialize('UA-193321912-1', {
+	testMode: process.env.NODE_ENV === 'development'
+});
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 const WITHDRAWAL_COST = 50e3;
 
