@@ -11,7 +11,7 @@
 	"app.costChart.crosshair.indirect": "Indirect Cost : {indirectCost}",
 	"app.costChart.crosshair.saving": "Savings : {saving}",
 	"app.problem.title": "The Problem",
-	"app.problem.content": "You want to buy a small amount of Bitcoin, but Binance charges you {satsAmount} satoshis per withdraw. That's {usdAmount} USD at current market prices! This forces you to eiter make a large purchase, not buy it, or (worst) buy it and just leave it at the exchange. 🤦",
+	"app.problem.content": "You want to buy a small amount of Bitcoin, but Binance charges you {satsAmount} satoshis per withdraw. That's {usdAmount} USD at current market prices! This forces you to either make a large purchase, not buy it, or (worst) buy it and just leave it at the exchange. 🤦",
 	"app.solution.title": "The Solution",
 	"app.solution.content": "By leveraging the low cost of the Litecoin withdrawal, you can save north of 90% of what you'd otherwise spend in withdrawal fees.",
 	"app.objection.title": "But.. what I wanted was Bitcoin!",
