@@ -7,6 +7,7 @@ import Links from '../../components/Links/Links';
 import ReactGA from 'react-ga';
 import { IntlProvider } from 'react-intl';
 import Translations from '../../utils/Translations';
+import languages from '../../common/languages';
 import cctx from 'ccxt';
 import './Main.css';
 
@@ -21,6 +22,8 @@ const Main = () => {
 	const [btcPrice, setBtcPrice] = useState(0);
 	const [locale, setLocale] = useState('en');
 
+	const { SupportedLanguages, detectBrowserLocale } = languages;
+
 	useEffect(() => {
 		const fetchPrice = async () => {
 			const exchangeClass = cctx['binance'];
@@ -29,8 +32,12 @@ const Main = () => {
 			const btcPrice = tickers['BTC/USDT'].last;
 			setBtcPrice(btcPrice);
 		}
+		const locales = detectBrowserLocale();
+		if (locales && locales.length) {
+			onLanguageSelected({ target: {value: locales[0] }});
+		}
 		fetchPrice();
-	}, []);
+	},[detectBrowserLocale]);
 
 	const onLanguageSelected = event => {
 		setLocale(event.target.value);
@@ -39,11 +46,11 @@ const Main = () => {
 	return (
 		<div className='Main'>
 			<IntlProvider locale={locale} messages={Translations[locale]}>
-				<label for="locale-select">Choose a language:</label>
-				<select onChange={onLanguageSelected} name="locales" id="locale-select">
-						<option value="en">English</option>
-						<option value="es">Spanish</option>
-						<option value="pt">Portuguese</option>
+				<label>Choose a language:</label>
+				<select onChange={onLanguageSelected} name="locales">
+					{SupportedLanguages.map((locale, i) =>
+						<option key={i} value={locale.code}>{locale.name}</option>
+					)}
 				</select>
 				<Problem btcPrice={btcPrice} withdrawalCost={WITHDRAWAL_COST}/>
 				<Solution/>
