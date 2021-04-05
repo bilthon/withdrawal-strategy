@@ -14,7 +14,9 @@ const Problem = ({ btcPrice, withdrawalCost }) => {
 		defaultMessage: 'You want to buy a small amount of Bitcoin, but Binance charges you {satsAmount} satoshis per withdraw. That\'s {usdAmount} USD at current market prices! This forces you to eiter make a large purchase, not buy it, or buy it and just leave it at the exchange.'
 	}, {
 		satsAmount: withdrawalCost,
-		usdAmount: (withdrawalCost * 1e-8) * btcPrice
+		usdAmount: intl.formatNumber((withdrawalCost * 1e-8) * btcPrice, {
+			maximumFractionDigits: 2
+		})
 	});
 
 	return (
